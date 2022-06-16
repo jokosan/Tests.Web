@@ -1,0 +1,26 @@
+﻿@page "/login"
+@layout LoginLayout
+@inherits Tests.Web.Component.Identity.LoginComponent
+
+@using Radzen;
+@using Radzen.Blazor;
+@using Tests.Database.ModelIdentity;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Authorization;
+
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Login">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Action="@($"account/login?redirectUrl={redirectUrl}")" Data="@("login")" Method="post">
+          <ChildContent>
+            <RadzenLogin AllowResetPassword="false" Register="@Login0Register">
+            </RadzenLogin>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

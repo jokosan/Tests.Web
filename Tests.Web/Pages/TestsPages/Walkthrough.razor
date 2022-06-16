@@ -1,0 +1,63 @@
+﻿@page "/walkthrough/{Id}"
+@attribute [Authorize]
+@inherits Tests.Web.Component.WalkthroughComponent
+
+@if (questions != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-11 offset-md-1">
+                @if (testResults == null)
+                {
+                    <RadzenCard>
+                        <h4 class="mb-4">@questions.QuestionText</h4>
+                        <RadzenRadioButtonList @bind-Value=@value TValue="int" Orientation="Orientation.Vertical"
+                                               Change=@(args => OnChange(args, questions.IdQuestions))>
+                            <Items>
+                                @foreach (var dataItem in questions.AnswerOptions)
+                                {
+                                    <RadzenRadioButtonListItem Text="@dataItem.Possiblenswer" Value="@dataItem.IdAnswerOptions" />
+                                }
+                            </Items>
+                        </RadzenRadioButtonList>
+                    </RadzenCard>
+                    <div class="float-right mt-3">
+                        <RadzenButton Click=@(args => OnClickNext()) Disabled="@next" Text="Наступне питання" />
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in testResults)
+                    {
+                        <RadzenCard class="m-3">
+                            <h3 class="h5">Питання №@item.id @item.QuestionText</h3>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div>Ваша відповідь</div>
+                                    <b>@item.Possiblenswer</b>
+                                </div>
+                                <div class="col-md-8">
+                                    <div>Результат</div>
+                                    @if (item.ResultAnswer)
+                                    {
+                                        <b class="text-success">Ваша відповідь вірна </b>
+                                    }
+                                    else
+                                    {
+                                        <b class="text-danger">Відповідь невірна!</b>
+                                    }
+                                </div>
+                            </div>
+                        </RadzenCard>
+                    }
+
+                    <div class="float-right mt-3">
+                        <RadzenButton Click=@(args => OnClickBack()) Disabled="@next" Text="Назад" />
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+}
+

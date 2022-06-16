@@ -1,0 +1,31 @@
+﻿@page "/selected-test/{Id}"
+
+@attribute [Authorize]
+@inherits Tests.Web.Component.SelectedTestComponent
+
+@if (listTests != null)
+{
+    <h1 class="text-center">@listTests.Name</h1>
+
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <img src="@listTests.Img" height="358" width="358" alt="@listTests.Name" class="img-thumbnail">
+                    </div>
+                    <div class="col-md-9 mt-5">
+                        <p class="text-left">@listTests.Note</p>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <RadzenCheckBox @bind-Value=@checkBoxStart Name="CheckBox1" TValue="bool" Change=@(args => OnChange(args)) Style="margin-right: 5px;" />
+                    <RadzenLabel Text="Я погоджуюся почати" Component="CheckBox1" Style="margin-left: 8px; margin-right: 20px; vertical-align: middle;" />
+                    <RadzenButton Click=@(args => OnClick(listTests.IdListTest)) Disabled="@disabledButton" Text="Продовжити" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

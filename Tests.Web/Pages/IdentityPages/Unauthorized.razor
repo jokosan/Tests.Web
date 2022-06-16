@@ -1,0 +1,23 @@
+﻿@page "/unauthorized"
+@layout LoginLayout
+@inherits Tests.Web.Component.Identity.UnauthorizedComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Tests.Database.Model
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Authorization
+
+<RadzenContent Container="main">
+    <ChildContent>
+        <RadzenHeading Size="H1" Text="Unauthorized">
+        </RadzenHeading>
+        <div class="row">
+            <div class="col-md-12">
+                <RadzenHtml>
+                    The current user is not authorized to see this page.
+                </RadzenHtml>
+            </div>
+        </div>
+    </ChildContent>
+</RadzenContent>

@@ -1,0 +1,61 @@
+﻿@inherits Tests.Web.Component.Identity.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using Tests.Database.Model
+@using Microsoft.AspNetCore.Identity;
+
+
+<RadzenDialog />
+<RadzenNotification />
+<RadzenTooltip />
+<RadzenContextMenu />
+
+<RadzenLayout>
+    <ChildContent>
+        <RadzenHeader>
+            <ChildContent>
+                <div class="row justify-content-start align-items-center">
+                    <div class="col-6 d-flex align-items-center">
+                        <RadzenSidebarToggle Click="@SidebarToggle0Click">
+                        </RadzenSidebarToggle>
+                        <RadzenLabel Text="Tests">
+                        </RadzenLabel>
+                    </div>
+                    <div class="col-6 text-right">
+                        <LoginDisplay />
+                    </div>
+                </div>
+            </ChildContent>
+        </RadzenHeader>
+        <RadzenBody @ref="body0">
+            <ChildContent>
+                <RadzenContentContainer Name="main">
+                    @Body
+                </RadzenContentContainer>
+            </ChildContent>
+        </RadzenBody>
+        <RadzenSidebar @ref="sidebar0">
+            <ChildContent>
+                <RadzenPanelMenu style="height: 100%">
+                    <ChildContent>
+                        <RadzenPanelMenuItem Text="Головна сторінка" Path="/">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Text="AddUser" Path="/application-users" Visible="@Security.IsInRole(new string[]{"Admin"})">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Text="Role" Path="/application-roles" Visible="@Security.IsInRole(new string[]{"Admin"})">
+                        </RadzenPanelMenuItem>
+                        <RadzenPanelMenuItem Text="AddRele" Path="/add-application-role" Visible="@Security.IsInRole(new string[]{"Admin"})">
+                        </RadzenPanelMenuItem>
+                    </ChildContent>
+                </RadzenPanelMenu>
+            </ChildContent>
+        </RadzenSidebar>
+        <RadzenFooter>
+            <ChildContent>
+                <RadzenLabel Text="Tests, Copyright Ⓒ 2022">
+                </RadzenLabel>
+            </ChildContent>
+        </RadzenFooter>
+    </ChildContent>
+</RadzenLayout>

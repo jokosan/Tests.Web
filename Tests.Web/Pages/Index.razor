@@ -1,0 +1,26 @@
+﻿@page "/"
+@attribute [Authorize]
+@inherits Tests.Web.Component.IndexComponent
+@using Microsoft.AspNetCore.Identity;
+
+<h1 class="text-center">Тест на знання C#</h1>
+
+<div class="container">
+    <div class="row text-center">
+        @if (GetTests != null)
+        {
+            @foreach (var item in GetTests)
+            {
+                <div class="col-sm-4 col-md-4 mt-3">
+                    <div class="card">
+                        <img src=@item.Img height="358" width="358" class="card-img-top" alt=@item.Name>
+                        <div class="card-body">
+                            <RadzenButton ButtonStyle="ButtonStyle.Light" Size="ButtonSize.Small" Text="@item.Name" Click="@((args) => ButtonClickImgPage(item.IdListTest))" @onclick:stopPropagation="true">
+                            </RadzenButton>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

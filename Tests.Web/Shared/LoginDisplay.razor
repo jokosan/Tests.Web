@@ -1,0 +1,12 @@
+﻿<AuthorizeView>
+    <Authorized>
+        <a href="/profile">Вітаю, @context.User.Identity.Name!</a>
+        <form method="post" action="/Account/LogOut">
+            <button type="submit" class="nav-link btn btn-link">Вийти</button>
+        </form>
+    </Authorized>
+    <NotAuthorized>
+        <a href="/register-application-user">Реєстрація</a>
+        <a href="/login">Увійти</a>
+    </NotAuthorized>
+</AuthorizeView>
